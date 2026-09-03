@@ -1,0 +1,17 @@
+* { box-sizing: border-box; }
+body { font-family: system-ui, sans-serif; margin: 0; color: #1f2937; background: #f9fafb; }
+header { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; background: #111827; color: white; }
+header nav a { color: white; margin-left: 1rem; text-decoration: none; }
+main { padding: 1.5rem 2rem; max-width: 960px; margin: 0 auto; }
+.filters { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; }
+.filters input, .filters select { padding: 0.5rem; }
+.filters button, .cart-summary button { background: #2563eb; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; }
+.product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
+.product-card { background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 1rem; }
+.product-card h3 { margin: 0 0 0.25rem; }
+.product-card .price { font-weight: bold; color: #059669; }
+.product-card button { margin-top: 0.5rem; width: 100%; }
+table { width: 100%; border-collapse: collapse; margin-bottom: 1rem; }
+th, td { text-align: left; padding: 0.5rem; border-bottom: 1px solid #e5e7eb; }
+.cart-summary { display: flex; justify-content: space-between; align-items: center; }
+#checkoutResult { margin-top: 1rem; }
