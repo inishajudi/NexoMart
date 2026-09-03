@@ -1,0 +1,12 @@
+# Copy this file to config.properties (same folder) and adjust for your machine.
+# config.properties is .gitignore'd - never commit real credentials.
+
+# Local embedded/file-mode H2 (default used if config.properties is absent):
+db.url=jdbc:h2:./data/nexomart;AUTO_SERVER=TRUE
+db.user=sa
+db.password=
+
+# Server-mode H2 example (used once deployed, per spec Section 10):
+# db.url=jdbc:h2:tcp://localhost:9092/./data/nexomart
+# db.user=sa
+# db.password=
