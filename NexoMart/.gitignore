@@ -1,0 +1,12 @@
+﻿target/
+*.class
+.idea/
+*.iml
+.vscode/
+*.log
+data/
+*.mv.db
+*.lock.db
+*.trace.db
+*.properties
+!src/main/resources/*.properties.example

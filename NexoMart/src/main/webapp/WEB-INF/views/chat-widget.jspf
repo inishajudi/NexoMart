@@ -1,0 +1,139 @@
+<%-- NexoMart chat widget: floating button + panel. Calls POST /api/v1/chat. No API key here. --%>
+<style>
+#cm-chat-btn{position:fixed;right:20px;bottom:20px;z-index:9998;width:56px;height:56px;border-radius:50%;border:none;cursor:pointer;background:var(--brass);color:var(--on-accent);box-shadow:var(--shadow-md);display:flex;align-items:center;justify-content:center}
+#cm-chat-btn:hover{background:var(--brass-hover)}
+#cm-chat-btn svg{width:26px;height:26px}
+#cm-chat-panel{position:fixed;right:20px;bottom:88px;z-index:9999;width:min(360px,calc(100vw - 40px));height:min(480px,calc(100vh - 120px));display:none;flex-direction:column;background:var(--surface);border:1px solid var(--border-strong);border-radius:var(--radius);box-shadow:var(--shadow-lg);overflow:hidden;font-family:'Inter',sans-serif;color:var(--text)}
+#cm-chat-panel.open{display:flex}
+.cm-chat-head{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:var(--brass);color:var(--on-accent)}
+.cm-chat-title{font-family:'Fraunces',serif;font-size:17px;font-weight:600}
+.cm-chat-close{background:none;border:none;color:var(--on-accent);font-size:22px;line-height:1;cursor:pointer}
+.cm-chat-log{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px;background:var(--bg)}
+.cm-msg{max-width:85%;padding:8px 11px;border-radius:var(--radius);font-size:14px;line-height:1.45;white-space:pre-wrap;word-wrap:break-word}
+.cm-msg.bot{align-self:flex-start;background:var(--surface);border:1px solid var(--border)}
+.cm-msg.user{align-self:flex-end;background:var(--brass-light);border:1px solid var(--border-strong)}
+.cm-msg.err{align-self:flex-start;background:var(--error-bg);border:1px solid var(--error-border);color:var(--error-text)}
+.cm-chips{display:flex;flex-wrap:wrap;gap:6px;padding:0 12px 8px;background:var(--bg)}
+.cm-chip{font-size:12px;padding:4px 9px;border-radius:999px;border:1px solid var(--border-strong);background:var(--surface);color:var(--text-muted);cursor:pointer}
+.cm-chip:hover{border-color:var(--brass);color:var(--brass)}
+.cm-chat-form{display:flex;gap:8px;padding:10px;border-top:1px solid var(--border);background:var(--surface)}
+.cm-chat-input{flex:1;padding:8px 10px;border:1px solid var(--border-strong);border-radius:var(--radius-sm);background:var(--bg);color:var(--text);font-size:14px;font-family:inherit}
+.cm-chat-input:focus{outline:none;border-color:var(--brass)}
+.cm-chat-send{padding:8px 14px;border:none;border-radius:var(--radius-sm);background:var(--brass);color:var(--on-accent);font-weight:600;cursor:pointer}
+.cm-chat-send:hover{background:var(--brass-hover)}
+.cm-chat-send:disabled{opacity:.5;cursor:not-allowed}
+</style>
+
+<button id="cm-chat-btn" type="button" aria-label="Open chat assistant">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+</button>
+
+<div id="cm-chat-panel" role="dialog" aria-label="NexoMart assistant">
+  <div class="cm-chat-head">
+    <span class="cm-chat-title">NexoMart Assistant</span>
+    <button type="button" class="cm-chat-close" id="cm-chat-close" aria-label="Close chat">&times;</button>
+  </div>
+  <div class="cm-chat-log" id="cm-chat-log"></div>
+  <div class="cm-chips" id="cm-chat-chips"></div>
+  <div class="cm-chat-form">
+    <input type="text" class="cm-chat-input" id="cm-chat-input" maxlength="500" placeholder="Ask about NexoMart..." autocomplete="off">
+    <button type="button" class="cm-chat-send" id="cm-chat-send">Send</button>
+  </div>
+</div>
+
+<script>
+(function () {
+  var URL = '${pageContext.request.contextPath}/api/v1/chat';
+  var btn = document.getElementById('cm-chat-btn');
+  var panel = document.getElementById('cm-chat-panel');
+  var closeBtn = document.getElementById('cm-chat-close');
+  var log = document.getElementById('cm-chat-log');
+  var chips = document.getElementById('cm-chat-chips');
+  var input = document.getElementById('cm-chat-input');
+  var sendBtn = document.getElementById('cm-chat-send');
+  var busy = false;
+  var greeted = false;
+  var SUGGESTIONS = ['How do I sell a product?', 'How do I place an order?', 'What categories are there?', 'How do I leave a review?'];
+
+  function addMsg(text, cls) {
+    var d = document.createElement('div');
+    d.className = 'cm-msg ' + cls;
+    d.textContent = text;
+    log.appendChild(d);
+    log.scrollTop = log.scrollHeight;
+    return d;
+  }
+
+  function setBusy(b) {
+    busy = b;
+    sendBtn.disabled = b;
+  }
+
+  function send(text) {
+    text = (text || '').trim();
+    if (!text || busy) { return; }
+    chips.style.display = 'none';
+    addMsg(text, 'user');
+    input.value = '';
+    setBusy(true);
+    var typing = addMsg('...', 'bot');
+    var ctrl = new AbortController();
+    var timer = setTimeout(function () { ctrl.abort(); }, 30000);
+
+    fetch(URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'same-origin',
+      body: JSON.stringify({ message: text }),
+      signal: ctrl.signal
+    }).then(function (res) {
+      return res.json().catch(function () { return {}; }).then(function (data) {
+        typing.remove();
+        if (res.status === 429) {
+          var wait = parseInt(res.headers.get('Retry-After'), 10);
+          addMsg('Please wait ' + (wait > 0 ? wait : 'a few') + ' seconds before sending another message.', 'err');
+        } else if (res.ok && data.reply) {
+          addMsg(data.reply, 'bot');
+        } else if (data.error) {
+          addMsg(data.error, 'err');
+        } else {
+          addMsg('Sorry, the assistant is not available right now. Please try again later.', 'err');
+        }
+      });
+    }).catch(function () {
+      typing.remove();
+      addMsg('Sorry, the assistant is not available right now. Please try again later.', 'err');
+    }).then(function () {
+      clearTimeout(timer);
+      setBusy(false);
+      input.focus();
+    });
+  }
+
+  function openPanel() {
+    panel.classList.add('open');
+    if (!greeted) {
+      greeted = true;
+      addMsg('Hello! I can help with questions about buying, selling, orders and reviews on NexoMart.', 'bot');
+      SUGGESTIONS.forEach(function (q) {
+        var c = document.createElement('button');
+        c.type = 'button';
+        c.className = 'cm-chip';
+        c.textContent = q;
+        c.addEventListener('click', function () { send(q); });
+        chips.appendChild(c);
+      });
+    }
+    input.focus();
+  }
+
+  btn.addEventListener('click', function () {
+    if (panel.classList.contains('open')) { panel.classList.remove('open'); } else { openPanel(); }
+  });
+  closeBtn.addEventListener('click', function () { panel.classList.remove('open'); });
+  sendBtn.addEventListener('click', function () { send(input.value); });
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') { e.preventDefault(); send(input.value); }
+  });
+})();
+</script>

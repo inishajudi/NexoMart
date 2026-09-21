@@ -1,0 +1,71 @@
+CREATE TABLE IF NOT EXISTS users (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    role VARCHAR(20) NOT NULL CHECK (role IN ('BUYER', 'SELLER', 'ADMIN')),
+    created_at TIMESTAMP NOT NULL,
+    CONSTRAINT uq_users_email UNIQUE (email)
+);
+
+CREATE TABLE IF NOT EXISTS products (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    seller_id BIGINT NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    description CLOB,
+    price DECIMAL(10,2) NOT NULL,
+    stock_qty INT NOT NULL DEFAULT 0,
+    category VARCHAR(100) NOT NULL,
+    image_url VARCHAR(500),
+    created_at TIMESTAMP NOT NULL,
+    CONSTRAINT fk_products_seller FOREIGN KEY (seller_id) REFERENCES users(id)
+);
+CREATE INDEX IF NOT EXISTS idx_products_seller_id ON products(seller_id);
+CREATE INDEX IF NOT EXISTS idx_products_category ON products(category);
+
+CREATE TABLE IF NOT EXISTS orders (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    buyer_id BIGINT NOT NULL,
+    status VARCHAR(20) NOT NULL CHECK (status IN ('PENDING', 'CONFIRMED', 'SHIPPED', 'DELIVERED', 'CANCELLED')),
+    total_amount DECIMAL(10,2) NOT NULL,
+    created_at TIMESTAMP NOT NULL,
+    CONSTRAINT fk_orders_buyer FOREIGN KEY (buyer_id) REFERENCES users(id)
+);
+CREATE INDEX IF NOT EXISTS idx_orders_buyer_id ON orders(buyer_id);
+
+CREATE TABLE IF NOT EXISTS order_items (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    order_id BIGINT NOT NULL,
+    product_id BIGINT NOT NULL,
+    quantity INT NOT NULL,
+    unit_price DECIMAL(10,2) NOT NULL,
+    CONSTRAINT fk_order_items_order FOREIGN KEY (order_id) REFERENCES orders(id),
+    CONSTRAINT fk_order_items_product FOREIGN KEY (product_id) REFERENCES products(id)
+);
+CREATE INDEX IF NOT EXISTS idx_order_items_order_id ON order_items(order_id);
+CREATE INDEX IF NOT EXISTS idx_order_items_product_id ON order_items(product_id);
+
+CREATE TABLE IF NOT EXISTS cart_items (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    user_id BIGINT NOT NULL,
+    product_id BIGINT NOT NULL,
+    quantity INT NOT NULL,
+    created_at TIMESTAMP NOT NULL,
+    CONSTRAINT fk_cart_items_user FOREIGN KEY (user_id) REFERENCES users(id),
+    CONSTRAINT fk_cart_items_product FOREIGN KEY (product_id) REFERENCES products(id)
+);
+CREATE INDEX IF NOT EXISTS idx_cart_items_user_id ON cart_items(user_id);
+CREATE INDEX IF NOT EXISTS idx_cart_items_product_id ON cart_items(product_id);
+
+CREATE TABLE IF NOT EXISTS reviews (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    product_id BIGINT NOT NULL,
+    user_id BIGINT NOT NULL,
+    rating INT NOT NULL CHECK (rating BETWEEN 1 AND 5),
+    comment VARCHAR(1000),
+    created_at TIMESTAMP NOT NULL,
+    CONSTRAINT fk_reviews_product FOREIGN KEY (product_id) REFERENCES products(id),
+    CONSTRAINT fk_reviews_user FOREIGN KEY (user_id) REFERENCES users(id)
+);
+CREATE INDEX IF NOT EXISTS idx_reviews_product_id ON reviews(product_id);
+CREATE INDEX IF NOT EXISTS idx_reviews_user_id ON reviews(user_id);

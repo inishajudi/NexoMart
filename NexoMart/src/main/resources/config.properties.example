@@ -1,0 +1,5 @@
+# Copy this file to config.properties and fill in real values. Never commit config.properties.
+db.url=jdbc:h2:mem:nexomart
+db.user=sa
+db.password=changeme
+ai.chatbot.provider=mock

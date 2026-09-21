@@ -1,0 +1,5 @@
+
+</main>
+<%@ include file="chat-widget.jspf" %>
+</body>
+</html>
