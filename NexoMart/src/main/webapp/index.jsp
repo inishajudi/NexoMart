@@ -1,7 +1,19 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="com.nexomart.app.filter.AuthFilter" %>
+<%@ page import="com.nexomart.app.model.User" %>
+<%
+    /* ── LOGIN-FIRST: redirect to /login if no session ── */
+    HttpSession s = request.getSession(false);
+    User currentUser = (s == null) ? null : (User) s.getAttribute(AuthFilter.SESSION_USER_ATTR);
+    if (currentUser == null) {
+        response.sendRedirect(request.getContextPath() + "/login");
+        return;
+    }
+%>
 <%@ include file="WEB-INF/views/header.jspf" %>
 
-<section style="padding:64px 0 44px;">
+<section style="padding:56px 0 40px;">
     <span class="eyebrow">Curated marketplace</span>
     <h1 class="hero-title">Crafted goods.<br><span class="accent">Chosen sellers.</span></h1>
     <p class="hero-subtitle">
@@ -48,20 +60,23 @@
 </div>
 <div class="product-grid">
     <c:forEach var="product" items="${featuredProducts}">
-        <a href="<c:url value='/products/view'><c:param name='id' value='${product.id}'/></c:url>" class="card" style="color:inherit; text-decoration:none; display:block;">
-            <div style="height:150px; background:var(--surface-hover); border-radius:var(--radius-sm); margin-bottom:14px; display:flex; align-items:center; justify-content:center; overflow:hidden;">
+        <a href="<c:url value='/products/view'><c:param name='id' value='${product.id}'/></c:url>"
+           class="card" style="text-decoration:none; display:block; padding:0; overflow:hidden;">
+            <div class="product-img-wrap">
                 <c:choose>
                     <c:when test="${not empty product.imageUrl}">
-                        <img src="<c:out value='${product.imageUrl}'/>" alt="<c:out value='${product.name}'/>" style="width:100%; height:100%; object-fit:cover;">
+                        <img src="<c:out value='${product.imageUrl}'/>" alt="<c:out value='${product.name}'/>" loading="lazy">
                     </c:when>
                     <c:otherwise>
-                        <span class="muted">No image</span>
+                        <div class="no-img" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:var(--text-faint);font-size:13px;background:var(--surface-2);">No image</div>
                     </c:otherwise>
                 </c:choose>
             </div>
-            <div class="muted" style="text-transform:uppercase; font-size:11px; letter-spacing:0.06em; margin-bottom:6px;"><c:out value="${product.category}"/></div>
-            <div style="font-weight:600; margin-bottom:8px;"><c:out value="${product.name}"/></div>
-            <div class="price"><c:out value="${product.price}"/></div>
+            <div class="product-info">
+                <div class="product-category"><c:out value="${product.category}"/></div>
+                <div class="product-name"><c:out value="${product.name}"/></div>
+                <span class="price"><c:out value="${product.price}"/></span>
+            </div>
         </a>
     </c:forEach>
     <c:if test="${empty featuredProducts}">
