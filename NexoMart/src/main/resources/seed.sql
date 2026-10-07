@@ -9,100 +9,36 @@ INSERT INTO users (name, email, password_hash, role, created_at) VALUES
     ('Karthik Seller',   'seller2@nexomart.com', '$2a$12$sS.8BwD5OyozOVuhTBNjhep2TX1OLm5ZxCjfQ1exYkEkn2bhL.wGK', 'SELLER', CURRENT_TIMESTAMP),
     ('adminMahalakshmi', 'admin@nexomart.com',   '$2a$12$sS.8BwD5OyozOVuhTBNjhep2TX1OLm5ZxCjfQ1exYkEkn2bhL.wGK', 'ADMIN',  CURRENT_TIMESTAMP),
     ('Priya Nair',       'seller3@nexomart.com', '$2a$12$sS.8BwD5OyozOVuhTBNjhep2TX1OLm5ZxCjfQ1exYkEkn2bhL.wGK', 'SELLER', CURRENT_TIMESTAMP),
-    ('Divya Menon',      'seller4@nexomart.com', '$2a$12$sS.8BwD5OyozOVuhTBNjhep2TX1OLm5ZxCjfQ1exYkEkn2bhL.wGK', 'SELLER', CURRENT_TIMESTAMP);
+    ('Divya Menon',     'seller4@nexomart.com', '$2a$12$sS.8BwD5OyozOVuhTBNjhep2TX1OLm5ZxCjfQ1exYkEkn2bhL.wGK', 'SELLER', CURRENT_TIMESTAMP);
 
--- ── SKIN CARE (8 products) ──────────────────────────────────────────────────
--- seller1 (Meera Seller, id=3)
+-- seller1 (Meera Seller, id=3) products - Electronics
 INSERT INTO products (seller_id, name, description, price, stock_qty, category, image_url, created_at) VALUES
-    (3, 'Cetaphil Gentle Skin Cleanser 250ml',
-     'Cetaphil. Mild, soap-free face wash for sensitive and dry skin. Removes dirt and oil without stripping moisture. Dermatologist recommended.',
-     349.00, 80, 'Skin Care',
-     'https://images.pexels.com/photos/4202325/pexels-photo-4202325.jpeg',
-     CURRENT_TIMESTAMP),
+    (3, 'Wireless Mouse', 'Ergonomic 2.4GHz wireless mouse with USB receiver.', 599.00, 50, 'Electronics', 'https://images.pexels.com/photos/7172700/pexels-photo-7172700.jpeg', CURRENT_TIMESTAMP),
+    (3, 'USB-C Charger 65W', 'Fast-charging GaN wall charger with USB-C PD.', 1299.00, 30, 'Electronics', 'https://images.pexels.com/photos/32710069/pexels-photo-32710069.jpeg', CURRENT_TIMESTAMP),
+    (3, 'Bluetooth Headphones', 'Over-ear headphones with 30-hour battery life.', 2499.00, 20, 'Electronics', 'https://images.pexels.com/photos/30345418/pexels-photo-30345418.jpeg', CURRENT_TIMESTAMP),
+    (3, 'Wireless Earbuds', 'True wireless earbuds with clear sound, touch controls and a charging case for up to 24 hours of playback.', 1799.00, 45, 'Electronics', 'https://images.pexels.com/photos/11599423/pexels-photo-11599423.jpeg', CURRENT_TIMESTAMP),
+    (3, 'Smartphone 128GB', '6.5-inch display, 128GB storage, 50MP camera and a long-lasting battery.', 15999.00, 25, 'Electronics', 'https://images.pexels.com/photos/3999536/pexels-photo-3999536.jpeg', CURRENT_TIMESTAMP);
 
-    (3, 'Cetaphil Moisturizing Cream 250g',
-     'Cetaphil. Rich, non-greasy moisturizing cream that provides 48-hour hydration for dry to very dry skin. Fragrance-free and non-comedogenic.',
-     499.00, 60, 'Skin Care',
-     'https://images.pexels.com/photos/3762879/pexels-photo-3762879.jpeg',
-     CURRENT_TIMESTAMP),
-
-    (3, 'Dot & Key Watermelon Cooling Toner 200ml',
-     'Dot & Key. Hydrating face toner with watermelon extract that soothes and balances skin. Alcohol-free formula suitable for all skin types.',
-     395.00, 50, 'Skin Care',
-     'https://images.pexels.com/photos/6621374/pexels-photo-6621374.jpeg',
-     CURRENT_TIMESTAMP),
-
-    (3, 'Dot & Key Vitamin C Serum 30ml',
-     'Dot & Key. Brightening Vitamin C serum with niacinamide that fades dark spots, evens skin tone and boosts radiance. Lightweight and fast-absorbing.',
-     595.00, 45, 'Skin Care',
-     'https://images.pexels.com/photos/4041392/pexels-photo-4041392.jpeg',
-     CURRENT_TIMESTAMP),
-
-    (3, 'The Minimalist Niacinamide 10% Serum 30ml',
-     'The Minimalist. High-strength niacinamide serum that visibly reduces pores, controls sebum and improves uneven skin tone. Suitable for oily and acne-prone skin.',
-     599.00, 70, 'Skin Care',
-     'https://images.pexels.com/photos/6621462/pexels-photo-6621462.jpeg',
-     CURRENT_TIMESTAMP),
-
-    (3, 'The Minimalist SPF 50 Sunscreen 50ml',
-     'The Minimalist. Lightweight, non-greasy sunscreen with broad-spectrum SPF 50 PA+++ protection. Water-resistant formula with no white cast.',
-     349.00, 90, 'Skin Care',
-     'https://images.pexels.com/photos/3621234/pexels-photo-3621234.jpeg',
-     CURRENT_TIMESTAMP),
-
-    (3, 'Mamaearth Ubtan Face Wash 100ml',
-     'Mamaearth. Natural ubtan face wash with turmeric and saffron that brightens skin and removes tan. Made with toxin-free, natural ingredients.',
-     249.00, 100, 'Skin Care',
-     'https://images.pexels.com/photos/4202327/pexels-photo-4202327.jpeg',
-     CURRENT_TIMESTAMP),
-
-    (3, 'Mamaearth Vitamin C Face Cream 50g',
-     'Mamaearth. Daily moisturizer with Vitamin C and turmeric that reduces dark spots and gives skin a healthy glow. SPF 20 protection included.',
-     399.00, 75, 'Skin Care',
-     'https://images.pexels.com/photos/3997373/pexels-photo-3997373.jpeg',
-     CURRENT_TIMESTAMP);
-
--- ── BEAUTY (7 products) ─────────────────────────────────────────────────────
--- seller2 (Karthik Seller, id=4)
+-- seller2 (Karthik Seller, id=4) products - Home & Kitchen
 INSERT INTO products (seller_id, name, description, price, stock_qty, category, image_url, created_at) VALUES
-    (4, 'MAC Matte Lipstick - Ruby Woo',
-     'MAC. Iconic retro matte lipstick in the cult shade Ruby Woo. Vivid blue-red with a classic matte finish. Long-lasting formula with full coverage.',
-     1850.00, 40, 'Beauty',
-     'https://images.pexels.com/photos/4938509/pexels-photo-4938509.jpeg',
-     CURRENT_TIMESTAMP),
+    (4, 'Stainless Steel Water Bottle', 'Insulated 1L bottle, keeps drinks cold for 24 hours.', 449.00, 100, 'Home & Kitchen', 'https://images.pexels.com/photos/25382222/pexels-photo-25382222.jpeg', CURRENT_TIMESTAMP),
+    (4, 'Plates', 'Set of durable ceramic dinner plates, dishwasher and microwave safe.', 799.00, 60, 'Home & Kitchen', 'https://images.pexels.com/photos/7671231/pexels-photo-7671231.jpeg', CURRENT_TIMESTAMP),
+    (4, 'Handcrafted Kitchen Utensil Set', 'Durable acacia wood utensil set including a straining spoon, slotted turner, and salad tongs, stored in a matching wooden caddy.', 349.00, 40, 'Home & Kitchen', 'https://images.pexels.com/photos/30798748/pexels-photo-30798748.jpeg', CURRENT_TIMESTAMP),
+    (4, 'Scented Candle', 'Hand-poured soy wax candle with a soothing fragrance and a burn time of around 40 hours.', 449.00, 55, 'Home & Kitchen', 'https://images.pexels.com/photos/11137699/pexels-photo-11137699.jpeg', CURRENT_TIMESTAMP),
+    (4, 'Stainless Steel Measuring Spoons', 'Durable stainless steel measuring spoon set with engraved markings for accurate cooking and baking.', 249.00, 90, 'Home & Kitchen', 'https://images.pexels.com/photos/9737802/pexels-photo-9737802.jpeg', CURRENT_TIMESTAMP);
 
-    (4, 'MAC Studio Fix Powder Plus Foundation',
-     'MAC. Matte powder foundation that provides medium-to-full coverage with a natural finish. Controls oil and minimizes pores for up to 8 hours.',
-     3200.00, 30, 'Beauty',
-     'https://images.pexels.com/photos/17679435/pexels-photo-17679435.jpeg',
-     CURRENT_TIMESTAMP),
+-- seller3 (Priya Nair, id=6) products - Baby Toys
+INSERT INTO products (seller_id, name, description, price, stock_qty, category, image_url, created_at) VALUES
+    (6, 'Soft Wooden Rattles', 'Smooth, baby-safe wooden rattles with a gentle sound. Easy to grip and free from harmful paints.', 349.00, 60, 'Baby Toys', 'https://images.pexels.com/photos/9271755/pexels-photo-9271755.jpeg', CURRENT_TIMESTAMP),
+    (6, 'Shape Sorter Toy', 'Colourful shape sorter that builds hand-eye coordination and early problem-solving skills.', 599.00, 40, 'Baby Toys', 'https://images.pexels.com/photos/11030155/pexels-photo-11030155.jpeg', CURRENT_TIMESTAMP),
+    (6, 'Soft Plush Toys', 'Cuddly, hypoallergenic plush toys made from skin-friendly fabric, suitable for newborns and toddlers.', 499.00, 50, 'Baby Toys', 'https://images.pexels.com/photos/22729433/pexels-photo-22729433.jpeg', CURRENT_TIMESTAMP),
+    (6, 'Colourful Stacking Rings', 'Classic stacking rings toy that helps toddlers learn colours, sizes and coordination.', 399.00, 45, 'Baby Toys', 'https://images.pexels.com/photos/9271757/pexels-photo-9271757.jpeg', CURRENT_TIMESTAMP),
+    (6, 'Toy Xylophone', 'Bright wooden xylophone with two mallets, a fun first musical instrument for kids.', 549.00, 35, 'Baby Toys', 'https://images.pexels.com/photos/6743155/pexels-photo-6743155.jpeg', CURRENT_TIMESTAMP);
 
-    (4, 'Swiss Beauty Ultra Smooth Lip Color',
-     'Swiss Beauty. Creamy, hydrating lipstick with smooth glide and rich pigment in 12 shades. Enriched with Vitamin E for soft, moisturized lips.',
-     199.00, 120, 'Beauty',
-     'https://images.pexels.com/photos/4834671/pexels-photo-4834671.jpeg',
-     CURRENT_TIMESTAMP),
-
-    (4, 'Swiss Beauty Waterproof Kajal',
-     'Swiss Beauty. Intense black kajal pencil with a smooth, smudge-proof formula. Enriched with almond oil for comfortable all-day wear.',
-     149.00, 150, 'Beauty',
-     'https://images.pexels.com/photos/4857812/pexels-photo-4857812.jpeg',
-     CURRENT_TIMESTAMP),
-
-    (4, 'Swiss Beauty 12-Shade Eyeshadow Palette',
-     'Swiss Beauty. Blendable eyeshadow palette with 6 matte and 6 shimmer shades. Perfect for day-to-night looks with long-lasting pigment.',
-     399.00, 55, 'Beauty',
-     'https://images.pexels.com/photos/13534390/pexels-photo-13534390.jpeg',
-     CURRENT_TIMESTAMP),
-
-    (4, 'MAC Prep + Prime Fix+ Setting Spray 100ml',
-     'MAC. Lightweight setting spray that hydrates, refreshes and sets makeup for a longer-lasting finish. Infused with green tea, chamomile and cucumber.',
-     2700.00, 25, 'Beauty',
-     'https://images.pexels.com/photos/6621374/pexels-photo-6621374.jpeg',
-     CURRENT_TIMESTAMP),
-
-    (4, 'Swiss Beauty Professional Makeup Brush Set',
-     'Swiss Beauty. Set of 12 professional makeup brushes for face and eye application. Soft synthetic bristles with a sturdy handle, comes in a zip pouch.',
-     599.00, 45, 'Beauty',
-     'https://images.pexels.com/photos/7256112/pexels-photo-7256112.jpeg',
-     CURRENT_TIMESTAMP);
+-- seller4 (Divya Menon, id=7) products - Makeup
+INSERT INTO products (seller_id, name, description, price, stock_qty, category, image_url, created_at) VALUES
+    (7, 'Matte Lipstick', 'Long-lasting matte lipstick with rich colour payoff and a comfortable, non-drying finish.', 399.00, 80, 'Makeup', 'https://images.pexels.com/photos/4938509/pexels-photo-4938509.jpeg', CURRENT_TIMESTAMP),
+    (7, 'Volumizing Mascara', 'Smudge-proof mascara that lengthens and volumizes lashes for all-day wear.', 349.00, 70, 'Makeup', 'https://images.pexels.com/photos/4857812/pexels-photo-4857812.jpeg', CURRENT_TIMESTAMP),
+    (7, 'Makeup Brush Set', 'Set of soft, dense brushes for face and eyes, supplied with a travel pouch.', 799.00, 40, 'Makeup', 'https://images.pexels.com/photos/7256112/pexels-photo-7256112.jpeg', CURRENT_TIMESTAMP),
+    (7, 'Eyeshadow Palette', 'Blendable eyeshadow palette with matte and shimmer shades for day and evening looks.', 899.00, 35, 'Makeup', 'https://images.pexels.com/photos/13534390/pexels-photo-13534390.jpeg', CURRENT_TIMESTAMP),
+    (7, 'Compact Powder', 'Lightweight compact powder that sets makeup and controls shine with a natural matte finish.', 299.00, 65, 'Makeup', 'https://images.pexels.com/photos/17679435/pexels-photo-17679435.jpeg', CURRENT_TIMESTAMP);
