@@ -85,20 +85,7 @@
             align-items: center;
             margin-right: 28px;
         }
-        header .brand::before {
-            content: "N";
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 34px; height: 34px;
-            border-radius: 10px;
-            background: linear-gradient(135deg, #444, #222);
-            color: #fff;
-            font-weight: 800;
-            font-size: 16px;
-            margin-right: 10px;
-            box-shadow: 0 4px 14px rgba(167,139,250,0.35);
-        }
+       
         .tagline { color: var(--text-faint); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-right: auto; }
 
         /* ── LAYOUT ── */
