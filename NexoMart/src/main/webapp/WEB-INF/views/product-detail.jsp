@@ -3,8 +3,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="header.jspf" %>
 
-<div class="card">
-    <img src="<c:out value='${product.imageUrl}'/>" alt="" style="width:100%; max-height:280px; object-fit:cover; border-radius:6px;" onerror="this.style.display='none'">
+<div class="card" style="padding:20px;">
+ <img src="<c:out value='${product.imageUrl}'/>" alt="" style="width:100%; max-height:280px; object-fit:contain; border-radius:6px; display:block;" onerror="this.style.display='none'">
     <h2 style="margin:12px 0 4px;"><c:out value="${product.name}"/></h2>
     <div class="muted"><c:out value="${product.category}"/></div>
     <p><c:out value="${product.description}"/></p>
