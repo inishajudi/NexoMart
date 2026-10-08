@@ -30,6 +30,12 @@
             <button type="submit">Add to cart</button>
         </form>
     </c:if>
+<c:if test="${sessionScope.loggedInUser != null && sessionScope.loggedInUser.role == 'BUYER'}">
+    <form method="post" action="${pageContext.request.contextPath}/wishlist" style="margin-top:10px;">
+        <input type="hidden" name="productId" value="${product.id}"/>
+        <button type="submit" style="background:transparent; border:1px solid #9a6a24; color:#9a6a24; padding:6px 16px; border-radius:999px; font-weight:600; cursor:pointer;">&#9825; Add to Wishlist</button>
+    </form>
+</c:if>
 
     <a href="<c:url value='/products'/>" style="display:inline-block; margin-top:12px; color:#9a6a24; font-weight:600; text-decoration:none;">&larr; Back to products</a>
 </div>
