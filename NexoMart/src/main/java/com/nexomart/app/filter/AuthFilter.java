@@ -29,7 +29,8 @@ import com.nexomart.app.model.User;
         "/products/edit",
         "/products/delete",
         "/reviews/*",
-        "/admin/*"
+        "/admin/*",
+        "/wishlist"
 })
 public class AuthFilter implements Filter {
 
