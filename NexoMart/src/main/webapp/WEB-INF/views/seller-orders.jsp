@@ -3,21 +3,22 @@
 <%@ include file="header.jspf" %>
 
 <style>
-    .page-title { font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; font-size: 36px; color: #2b2418; margin: 32px 0 20px; }
-    .sand-card { background: #fbf6ea; border: 1px solid #e3d5b8; border-radius: 16px; padding: 24px; box-shadow: 0 10px 30px rgba(120,88,30,0.06); margin-bottom: 20px; }
-    .order-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; color: #2b2418; }
-    .order-date { color: #7a6b52; font-size: 14px; }
-    .order-meta { color: #5b4d36; font-size: 14px; margin-bottom: 6px; }
-    .status-badge { display: inline-block; padding: 3px 12px; font-size: 12px; font-weight: 600; letter-spacing: 0.04em; color: #7f5619; background: #f0e2c0; border-radius: 999px; }
+    
+    .page-title { font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; font-size: 36px; color: #1a1a1a; margin: 32px 0 20px; }
+    .sand-card { background: #ffffff; border: 1px solid #e0e0e0; border-radius: 16px; padding: 24px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); margin-bottom: 20px; }
+    .order-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; color: #1a1a1a; }
+    .order-date { color: #555555; font-size: 14px; }
+    .order-meta { color: #333333; font-size: 14px; margin-bottom: 6px; }
+    .status-badge { display: inline-block; padding: 3px 12px; font-size: 12px; font-weight: 600; letter-spacing: 0.04em; color: #ffffff; background: #888888; border-radius: 999px; }
     .table-wrap { overflow-x: auto; }
     .sand-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-    .sand-table th { text-align: left; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: #7a6b52; padding: 10px 12px; border-bottom: 2px solid #e3d5b8; }
-    .sand-table td { padding: 12px; border-bottom: 1px solid #eadfc6; color: #2b2418; }
+    .sand-table th { text-align: left; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: #555555; padding: 10px 12px; border-bottom: 2px solid #e0e0e0; }
+    .sand-table td { padding: 12px; border-bottom: 1px solid #eeeeee; color: #1a1a1a; }
     .sand-table tr:last-child td { border-bottom: 0; }
-    .empty-note { color: #7a6b52; margin: 0; }
-.btn-ship { background:#2e7d32; color:#fff; border:none; padding:5px 14px;
-            border-radius:999px; font-size:12px; font-weight:600; cursor:pointer; }
-.btn-ship:hover { background:#1b5e20; }
+    .empty-note { color: #555555; margin: 0; }
+    .btn-ship { background:#2e7d32; color:#fff; border:none; padding:5px 14px;
+                border-radius:999px; font-size:12px; font-weight:600; cursor:pointer; }
+    .btn-ship:hover { background:#1b5e20; }
 </style>
 
 <h2 class="page-title">Orders for your products</h2>
