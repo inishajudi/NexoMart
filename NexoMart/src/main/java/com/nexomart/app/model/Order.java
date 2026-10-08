@@ -7,9 +7,9 @@ import java.util.List;
 
 public class Order {
 
-    public enum Status {
-        PENDING, CONFIRMED
-    }
+public enum Status {
+    PENDING, CONFIRMED, SHIPPED, DELIVERED, CANCELLED
+}
 
     private long id;
     private long buyerId;
