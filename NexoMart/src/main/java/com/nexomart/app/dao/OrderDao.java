@@ -27,4 +27,5 @@ public interface OrderDao {
      * Used to gate review eligibility per the spec (F8: reviews on completed orders).
      */
     boolean hasDeliveredOrderForProduct(long buyerId, long productId);
+void updateStatus(long orderId, Order.Status status);
 }
