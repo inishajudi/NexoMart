@@ -34,6 +34,7 @@ public abstract class BaseServlet extends HttpServlet {
     protected CartService cartService;
     protected OrderService orderService;
     protected ReviewService reviewService;
+    protected WishlistDao wishlistDao;  
 
     @Override
     public void init() {
