@@ -377,6 +377,9 @@
         <a href="<c:url value='/products'/>">Browse</a>
         <a href="<c:url value='/cart'/>">Cart</a>
         <a href="<c:url value='/orders'/>">Orders</a>
+<% if (navUser.getRole().name().equals("BUYER")) { %>
+<a href="<c:url value='/wishlist'/>">Wishlist</a>
+<% } %>
         <% if (navUser.getRole().name().equals("SELLER")) { %>
         <a href="<c:url value='/products/create'/>">List a Product</a>
         <a href="<c:url value='/orders/seller'/>">My Sales</a>
