@@ -4,35 +4,35 @@
 INSERT INTO users (name, email, password_hash, role, created_at) VALUES
     ('Kavi',      'buyer1@nexomart.com',  '$2a$12$sS.8BwD5OyozOVuhTBNjhep2TX1OLm5ZxCjfQ1exYkEkn2bhL.wGK', 'BUYER',  CURRENT_TIMESTAMP),
     ('Krish',     'buyer2@nexomart.com',  '$2a$12$sS.8BwD5OyozOVuhTBNjhep2TX1OLm5ZxCjfQ1exYkEkn2bhL.wGK', 'BUYER',  CURRENT_TIMESTAMP),
-    ('Inisha',    'seller1@nexomart.com', '$2a$12$sS.8BwD5OyozOVuhTBNjhep2TX1OLm5ZxCjfQ1exYkEkn2bhL.wGK', 'SELLER', CURRENT_TIMESTAMP),
-    ('Judi',      'seller2@nexomart.com', '$2a$12$sS.8BwD5OyozOVuhTBNjhep2TX1OLm5ZxCjfQ1exYkEkn2bhL.wGK', 'SELLER', CURRENT_TIMESTAMP),
-    ('Maha',      'admin@nexomart.com',   '$2a$12$sS.8BwD5OyozOVuhTBNjhep2TX1OLm5ZxCjfQ1exYkEkn2bhL.wGK', 'ADMIN',  CURRENT_TIMESTAMP),
+    ('Priyan',    'seller1@nexomart.com', '$2a$12$sS.8BwD5OyozOVuhTBNjhep2TX1OLm5ZxCjfQ1exYkEkn2bhL.wGK', 'SELLER', CURRENT_TIMESTAMP),
+    ('Keerthi',      'seller2@nexomart.com', '$2a$12$sS.8BwD5OyozOVuhTBNjhep2TX1OLm5ZxCjfQ1exYkEkn2bhL.wGK', 'SELLER', CURRENT_TIMESTAMP),
+    ('Inisha Judi',      'admin@nexomart.com',   '$2a$12$sS.8BwD5OyozOVuhTBNjhep2TX1OLm5ZxCjfQ1exYkEkn2bhL.wGK', 'ADMIN',  CURRENT_TIMESTAMP),
     ('Madhu',     'seller3@nexomart.com', '$2a$12$sS.8BwD5OyozOVuhTBNjhep2TX1OLm5ZxCjfQ1exYkEkn2bhL.wGK', 'SELLER', CURRENT_TIMESTAMP),
     ('Dharshini', 'seller4@nexomart.com', '$2a$12$sS.8BwD5OyozOVuhTBNjhep2TX1OLm5ZxCjfQ1exYkEkn2bhL.wGK', 'SELLER', CURRENT_TIMESTAMP);
 
--- seller1 (Inisha, id=3) products - Dresses
+-- seller1 (Priyan, id=3) products - Dresses
 INSERT INTO products (seller_id, name, description, price, stock_qty, category, image_url, created_at) VALUES
-    (3, 'Floral Wrap Dress',        'Lightweight chiffon wrap dress with an all-over floral print, adjustable tie waist and flutter sleeves. Perfect for casual outings or brunches.',                              1299.00, 40, 'Dresses', 'https://images.pexels.com/photos/27514944/pexels-photo-27514944.jpeg',   CURRENT_TIMESTAMP),
-    (3, 'Anarkali Kurti',           'Elegant floor-length Anarkali in soft georgette with delicate embroidery at the neckline and hem. Available in festive jewel tones.',                                      1799.00, 35, 'Dresses', 'https://images.pexels.com/photos/28512766/pexels-photo-28512766.jpeg',   CURRENT_TIMESTAMP),
-    (3, 'Linen Shirt Dress',        'Relaxed straight-cut shirt dress in breathable linen blend. Features a button placket, side pockets and a self-tie belt for a polished everyday look.',                   1499.00, 30, 'Dresses', 'https://images.pexels.com/photos/31854718/pexels-photo-31854718.jpeg',   CURRENT_TIMESTAMP),
-    (3, 'Strappy Sundress',         'Breezy A-line sundress in cotton voile with adjustable spaghetti straps and a smocked bodice. A warm-weather wardrobe essential.',                                         999.00, 50, 'Dresses', 'https://images.pexels.com/photos/12441334/pexels-photo-12441334.png',   CURRENT_TIMESTAMP),
-    (3, 'Printed Midi Dress',       'Flattering midi-length dress in a vibrant block print, crafted from soft rayon. Elasticated waist and concealed side zip for a comfortable, neat fit.',                  1599.00, 25, 'Dresses', 'https://images.pexels.com/photos/12453986/pexels-photo-12453986.jpeg',   CURRENT_TIMESTAMP);
+    (3, 'Cotton Kurti',        'Lightweight and breathable kurti suitable for daily wear and Perfect for casual outings or brunches',                              1599.00, 40, 'Dresses', 'https://images.pexels.com/photos/35485419/pexels-photo-35485419.jpeg',   CURRENT_TIMESTAMP),
+    (3, 'T Shirts',           'Comfortable casual top available in various styles and prints',                                      500.00, 35, 'Dresses', 'https://images.pexels.com/photos/6311612/pexels-photo-6311612.jpeg',   CURRENT_TIMESTAMP),
+    (3, 'Floral Dress',        'Dress featuring multiple patterns and comfortable',                   1000.00, 30, 'Dresses', 'https://images.pexels.com/photos/30294272/pexels-photo-30294272.jpeg',   CURRENT_TIMESTAMP),
+    (3, 'Night Dress',         'Comfortable loose-fitting clothing for sleeping and relaxing',                                         799.00, 50, 'Dresses', 'https://images.pexels.com/photos/25328648/pexels-photo-25328648.jpeg',   CURRENT_TIMESTAMP),
+    (3, 'Midi Dress',       'Flattering midi-length dress in a vibrant block print, crafted from soft rayon and Elasticated waist and concealed side zip for a comfortable, neat fit.',                  999.00, 25, 'Dresses', 'https://images.pexels.com/photos/12453986/pexels-photo-12453986.jpeg',   CURRENT_TIMESTAMP);
 
--- seller2 (Judi, id=4) products - Accessories
+-- seller2 (Keerthi, id=4) products - Accessories
 INSERT INTO products (seller_id, name, description, price, stock_qty, category, image_url, created_at) VALUES
-    (4, 'Beaded Jhumka Earrings',   'Handcrafted brass jhumkas with colourful seed-bead tassels. Lightweight and hypoallergenic with a secure hook closure.',                                                    349.00, 80, 'Accessories', 'https://images.pexels.com/photos/37601639/pexels-photo-37601639.jpeg', CURRENT_TIMESTAMP),
-    (4, 'Leather Tote Bag',         'Spacious vegan-leather tote with an interior zip pocket, magnetic snap closure and sturdy handles. Fits a 14-inch laptop with ease.',                                     1999.00, 30, 'Accessories', 'https://images.pexels.com/photos/22432988/pexels-photo-22432988.jpeg',   CURRENT_TIMESTAMP),
-    (4, 'Silk Printed Scrunchie Set','Set of five oversized scrunchies in vibrant silk-satin prints. Gentle on hair, strong hold — from gym to evening in seconds.',                                            299.00, 90, 'Accessories', 'https://images.pexels.com/photos/8813976/pexels-photo-8813976.jpeg',   CURRENT_TIMESTAMP),
-    (4, 'Oxidised Silver Cuff',     'Wide oxidised silver-finish cuff bracelet with intricate floral engraving. A bold statement piece that pairs with both ethnic and western outfits.',                      599.00, 45, 'Accessories', 'https://images.pexels.com/photos/16304538/pexels-photo-16304538.jpeg',   CURRENT_TIMESTAMP),
-    (4, 'Woven Straw Hat',          'Wide-brim straw sun hat with an adjustable inner band and a grosgrain ribbon trim. UPF 40+ protection for beach days and outdoor festivals.',                             799.00, 55, 'Accessories', 'https://images.pexels.com/photos/30224641/pexels-photo-30224641.jpeg',     CURRENT_TIMESTAMP);
+    (4, 'Earrings',   'Trendy studs, hoops and jhumkas',                                                    150.00, 80, 'Accessories', 'https://images.pexels.com/photos/31605846/pexels-photo-31605846.jpeg', CURRENT_TIMESTAMP),
+    (4, 'Necklace',         'Fashion jewellery for casual/party wear',                                     500.00, 30, 'Accessories', 'https://images.pexels.com/photos/38101141/pexels-photo-38101141.jpeg',   CURRENT_TIMESTAMP),
+    (4, 'Bracelet','Stylish artificial jewellery',                                            200.00, 90, 'Accessories', 'https://images.pexels.com/photos/19784819/pexels-photo-19784819.jpeg',   CURRENT_TIMESTAMP),
+    (4, 'Hair Clips',     'Claw clips, hair pins and tic-tac clips',                      100.00, 45, 'Accessories', 'https://images.pexels.com/photos/33343184/pexels-photo-33343184.jpeg',   CURRENT_TIMESTAMP),
+    (4, 'Handbags',          'Everyday fashionable handbags',                             799.00, 55, 'Accessories', 'https://images.pexels.com/photos/23223849/pexels-photo-23223849.jpeg',     CURRENT_TIMESTAMP);
 
 -- seller3 (Madhu, id=6) products - Skincare
 INSERT INTO products (seller_id, name, description, price, stock_qty, category, image_url, created_at) VALUES
-    (6, 'Vitamin C Brightening Serum',  'Lightweight 15% Vitamin C serum that fades dark spots and boosts radiance. Alcohol-free formula suitable for all skin types.',                                       899.00, 60, 'Skincare', 'https://images.pexels.com/photos/28255122/pexels-photo-28255122.jpeg',   CURRENT_TIMESTAMP),
-    (6, 'Hydrating Aloe Gel Moisturiser','Gel-cream moisturiser with pure aloe vera and hyaluronic acid for deep, non-greasy hydration. Absorbs quickly, leaving skin plump and calm.',                       649.00, 55, 'Skincare', 'https://images.pexels.com/photos/14798340/pexels-photo-14798340.jpeg',   CURRENT_TIMESTAMP),
-    (6, 'Rice Water Gentle Cleanser',   'Mild foam cleanser enriched with fermented rice water and niacinamide. Removes impurities while maintaining the skin barrier. Fragrance-free.',                      499.00, 70, 'Skincare', 'https://images.pexels.com/photos/33343234/pexels-photo-33343234.png',   CURRENT_TIMESTAMP),
+    (6, 'Vitamin C Brightening Serum',  'Lightweight 15% Vitamin C serum that fades dark spots and boosts radiance. Alcohol-free formula suitable for all skin types.',                                       350.00, 60, 'Skincare', 'https://images.pexels.com/photos/28255122/pexels-photo-28255122.jpeg',   CURRENT_TIMESTAMP),
+    (6, 'Hydrating Aloe Gel Moisturiser','Gel-cream moisturiser with pure aloe vera and hyaluronic acid for deep, non-greasy hydration. Absorbs quickly, leaving skin plump and calm.',                       499.00, 55, 'Skincare', 'https://images.pexels.com/photos/14798340/pexels-photo-14798340.jpeg',   CURRENT_TIMESTAMP),
+    (6, 'Rice Water Gentle Cleanser',   'Mild foam cleanser enriched with fermented rice water and niacinamide. Removes impurities while maintaining the skin barrier. Fragrance-free.',                      699.00, 70, 'Skincare', 'https://images.pexels.com/photos/33343234/pexels-photo-33343234.png',   CURRENT_TIMESTAMP),
     (6, 'SPF 50 Sunscreen Lotion',      'Broad-spectrum UVA/UVB sunscreen with a lightweight, no-white-cast finish. Water-resistant for up to 80 minutes. PA++++ rated.',                                     549.00, 80, 'Skincare', 'https://images.pexels.com/photos/16378486/pexels-photo-16378486.jpeg',   CURRENT_TIMESTAMP),
-    (6, 'Overnight Repair Face Mask',   'Rich sleeping mask with retinol, ceramides and bakuchiol that works overnight to improve skin texture and reduce fine lines. Wake up to softer, smoother skin.',    799.00, 40, 'Skincare', 'https://images.pexels.com/photos/27462655/pexels-photo-27462655.jpeg',   CURRENT_TIMESTAMP);
+    (6, 'Moisturiser',   'To improve skin texture and reduce fine lines and smoother skin.',    399.00, 40, 'Skincare', 'https://images.pexels.com/photos/4841230/pexels-photo-4841230.jpeg',   CURRENT_TIMESTAMP);
 
 -- seller4 (Dharshini, id=7) products - Beauty
 INSERT INTO products (seller_id, name, description, price, stock_qty, category, image_url, created_at) VALUES
