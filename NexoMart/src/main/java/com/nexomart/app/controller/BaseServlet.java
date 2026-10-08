@@ -51,5 +51,6 @@ public abstract class BaseServlet extends HttpServlet {
         this.cartService = new CartService(cartDao, productDao);
         this.orderService = new OrderService(orderDao, cartDao, productDao);
         this.reviewService = new ReviewService(reviewDao, orderDao);
+        this.wishlistDao = new JdbcWishlistDao(dataSource);  
     }
 }
