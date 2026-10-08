@@ -95,4 +95,7 @@ public class OrderService {
     public List<Order> getSellerOrders(long sellerId) {
         return orderDao.findBySeller(sellerId);
     }
+public void markShipped(long orderId) {
+    orderDao.updateStatus(orderId, Order.Status.SHIPPED);
+}
 }
