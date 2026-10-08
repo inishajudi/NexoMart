@@ -31,4 +31,17 @@ public class SellerOrdersServlet extends BaseServlet {
         request.setAttribute("orders", orders);
         request.getRequestDispatcher("/WEB-INF/views/seller-orders.jsp").forward(request, response);
     }
+@Override
+protected void doPost(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
+    HttpSession session = request.getSession(false);
+    User seller = (User) session.getAttribute(AuthFilter.SESSION_USER_ATTR);
+    if (seller.getRole() != User.Role.SELLER) {
+        response.sendError(HttpServletResponse.SC_FORBIDDEN);
+        return;
+    }
+    long orderId = Long.parseLong(request.getParameter("orderId"));
+    orderService.markShipped(orderId);
+    response.sendRedirect(request.getContextPath() + "/orders/seller");
+}
 }
