@@ -44,6 +44,59 @@
         color: var(--text-faint); font-size: 13px;
         background: var(--surface-2);
     }
+.product-info {
+    padding: 16px;
+}
+.product-img-wrap {
+    width: 100%;
+    height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #fff;
+    padding: 12px;
+    box-sizing: border-box;
+}
+
+.product-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.product-info {
+    padding: 18px 20px 20px;
+}
+
+.product-info > * {
+    margin-bottom: 8px;
+}
+
+.product-info > *:last-child {
+    margin-bottom: 0;
+}
+
+.product-category {
+    margin-bottom: 8px;
+    font-size: 12px;
+}
+
+.product-name {
+    margin-bottom: 12px;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.product-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-top: 8px;
+}
 </style>
 
 <div class="search-bar">
