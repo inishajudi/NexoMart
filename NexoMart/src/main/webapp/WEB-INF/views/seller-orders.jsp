@@ -15,6 +15,9 @@
     .sand-table td { padding: 12px; border-bottom: 1px solid #eadfc6; color: #2b2418; }
     .sand-table tr:last-child td { border-bottom: 0; }
     .empty-note { color: #7a6b52; margin: 0; }
+.btn-ship { background:#2e7d32; color:#fff; border:none; padding:5px 14px;
+            border-radius:999px; font-size:12px; font-weight:600; cursor:pointer; }
+.btn-ship:hover { background:#1b5e20; }
 </style>
 
 <h2 class="page-title">Orders for your products</h2>
