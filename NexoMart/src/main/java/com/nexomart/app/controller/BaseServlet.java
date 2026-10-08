@@ -19,6 +19,8 @@ import com.nexomart.app.service.OrderService;
 import com.nexomart.app.service.ProductService;
 import com.nexomart.app.service.ReviewService;
 import com.nexomart.app.service.UserService;
+import com.nexomart.app.dao.WishlistDao;
+import com.nexomart.app.dao.impl.JdbcWishlistDao;
 
 /**
  * Every controller servlet extends this to get access to the service layer,
