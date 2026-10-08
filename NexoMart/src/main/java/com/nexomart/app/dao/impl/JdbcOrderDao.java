@@ -247,4 +247,16 @@ public class JdbcOrderDao implements OrderDao {
         order.setCreatedAt(rs.getTimestamp("created_at").toLocalDateTime());
         return order;
     }
+@Override
+public void updateStatus(long orderId, Order.Status status) {
+    String sql = "UPDATE orders SET status = ? WHERE id = ?";
+    try (Connection conn = dataSource.getConnection();
+         PreparedStatement ps = conn.prepareStatement(sql)) {
+        ps.setString(1, status.name());
+        ps.setLong(2, orderId);
+        ps.executeUpdate();
+    } catch (SQLException e) {
+        throw new DataAccessException("Failed to update order status", e);
+    }
+}
 }
