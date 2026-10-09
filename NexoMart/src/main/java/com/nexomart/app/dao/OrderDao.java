@@ -8,7 +8,10 @@ import com.nexomart.app.model.Order;
 
 public interface OrderDao {
 
-    /** Persists the order and all of its order_items in a single transaction. */
+    /**
+     * Persists the order and all of its order_items
+     * in a single transaction.
+     */
     Order insertWithItems(Order order);
 
     Optional<Order> findByIdWithItems(long orderId);
@@ -17,11 +20,25 @@ public interface OrderDao {
 
     List<Order> findAll();
 
+    /**
+     * Returns orders containing products belonging
+     * to the given seller.
+     */
     List<Order> findBySeller(long sellerId);
 
-    boolean hasDeliveredOrderForProduct(long buyerId, long productId);
+    /**
+     * Checks whether the buyer has a delivered order
+     * containing the given product.
+     */
+    boolean hasDeliveredOrderForProduct(
+            long buyerId,
+            long productId
+    );
 
     void updateStatus(long orderId, Order.Status status);
 
+    /**
+     * Returns the sales summary for the given seller.
+     */
     SellerDashboardDTO getSellerDashboard(long sellerId);
 }
