@@ -35,7 +35,20 @@ a.btn-back:active {
 
 <h2 class="page-title">Sales Dashboard</h2>
 
-<a href="${pageContext.request.contextPath}/orders/seller" class="btn-back">← Back to Orders</a>
+<a href="${pageContext.request.contextPath}/seller/dashboard"
+   style="display:inline-block;
+          margin-bottom:20px;
+          padding:12px 24px;
+          background-color:#1a1a1a !important;
+          color:#ffffff !important;
+          -webkit-text-fill-color:#ffffff !important;
+          border:1px solid #1a1a1a;
+          border-radius:999px;
+          font-size:16px;
+          font-weight:600;
+          text-decoration:none !important;">
+   View Sales Dashboard
+</a>
 
 <div class="stat-row">
     <div class="stat-card">
