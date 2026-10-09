@@ -18,6 +18,7 @@ import com.nexomart.app.dao.OrderDao;
 import com.nexomart.app.exception.DataAccessException;
 import com.nexomart.app.model.Order;
 import com.nexomart.app.model.OrderItem;
+import com.nexomart.app.dto.SellerDashboardDTO;
 
 public class JdbcOrderDao implements OrderDao {
 
@@ -255,6 +256,56 @@ public boolean hasDeliveredOrderForProduct(long buyerId, long productId) {
         } catch (SQLException e) {
             throw new DataAccessException("Failed to update order status", e);
         }
+    }
+        @Override
+    public SellerDashboardDTO getSellerDashboard(long sellerId) {
+        String sql = "SELECT p.name AS product_name, "
+                + "SUM(oi.quantity) AS units_sold, "
+                + "SUM(oi.quantity * oi.unit_price) AS revenue "
+                + "FROM order_items oi "
+                + "JOIN products p ON p.id = oi.product_id "
+                + "WHERE p.seller_id = ? "
+                + "GROUP BY p.id, p.name "
+                + "ORDER BY revenue DESC";
+
+        List<SellerDashboardDTO.ProductStat> stats = new ArrayList<>();
+        int totalOrders = 0;
+        java.math.BigDecimal totalRevenue = java.math.BigDecimal.ZERO;
+
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setLong(1, sellerId);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    String productName = rs.getString("product_name");
+                    int unitsSold      = rs.getInt("units_sold");
+                    java.math.BigDecimal revenue = rs.getBigDecimal("revenue");
+                    stats.add(new SellerDashboardDTO.ProductStat(productName, unitsSold, revenue));
+                    totalRevenue = totalRevenue.add(revenue);
+                }
+            }
+        } catch (SQLException e) {
+            throw new DataAccessException("Failed to load seller dashboard", e);
+        }
+
+        // count distinct orders for this seller
+        String countSql = "SELECT COUNT(DISTINCT o.id) FROM orders o "
+                + "JOIN order_items oi ON oi.order_id = o.id "
+                + "JOIN products p ON p.id = oi.product_id "
+                + "WHERE p.seller_id = ?";
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement ps = conn.prepareStatement(countSql)) {
+            ps.setLong(1, sellerId);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    totalOrders = rs.getInt(1);
+                }
+            }
+        } catch (SQLException e) {
+            throw new DataAccessException("Failed to count seller orders", e);
+        }
+
+        return new SellerDashboardDTO(totalOrders, totalRevenue, stats);
     }
 
 }
