@@ -10,3 +10,7 @@ data/
 *.trace.db
 *.properties
 !src/main/resources/*.properties.example
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
