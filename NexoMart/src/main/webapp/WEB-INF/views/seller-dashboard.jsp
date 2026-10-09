@@ -14,22 +14,22 @@
     .sand-table td { padding: 12px; border-bottom: 1px solid #eee; color: #1a1a1a; }
     .sand-table tr:last-child td { border-bottom: 0; }
     .empty-note  { color: #555; }
-    .btn-back {
+    a.btn-back,
+a.btn-back:link,
+a.btn-back:visited,
+a.btn-back:hover,
+a.btn-back:active {
     display: inline-block;
     margin-bottom: 16px;
     padding: 12px 24px;
-    background: #1a1a1a;
+    background-color: #1a1a1a !important;
     color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
     border: 1px solid #1a1a1a;
     border-radius: 999px;
     font-size: 15px;
     font-weight: 600;
-    text-decoration: none;
-}
-
-.btn-back:hover {
-    background: #333333;
-    color: #ffffff !important;
+    text-decoration: none !important;
 }
 </style>
 
