@@ -8,7 +8,7 @@ The application also includes an AI Chat Assistant that helps users with common 
 
 - **Stack:** Java 17, Maven, Tomcat 9, Servlet, JSP, JSTL, JDBC, H2, HikariCP, jBCrypt, SLF4J/Logback, Gson, JUnit 5 and Mockito.
 - **Code:** https://github.com/inishajudi/NexoMart
-- **Live site:** https://nexomart-r13f.onrender.com
+- **Live site:** https://nexomart-web.onrender.com
 
 ## Technical Decisions
 
