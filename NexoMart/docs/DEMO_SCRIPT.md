@@ -2,7 +2,7 @@
 
 NexoMart is a multi-seller online marketplace developed using Java web technologies.
 
-Live URL: https://nexomart-r13f.onrender.com
+Live URL: https://nexomart-web.onrender.com
 
 2. Technologies
 Java 17
@@ -79,7 +79,7 @@ Mockito
 
 GitHub: https://github.com/inishajudi/NexoMart
 
-Render: https://nexomart-r13f.onrender.com
+Render: https://nexomart-web.onrender.com
 
 10. Closing
 
