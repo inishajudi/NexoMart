@@ -19,6 +19,24 @@
     .btn-ship { background:#2e7d32; color:#fff; border:none; padding:5px 14px;
                 border-radius:999px; font-size:12px; font-weight:600; cursor:pointer; }
     .btn-ship:hover { background:#1b5e20; }
+a.sales-dashboard-button,
+a.sales-dashboard-button:link,
+a.sales-dashboard-button:visited,
+a.sales-dashboard-button:hover,
+a.sales-dashboard-button:active {
+    display: inline-block;
+    padding: 12px 24px;
+    margin-bottom: 20px;
+    background: #1a1a1a !important;
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    border: 1px solid #1a1a1a;
+    border-radius: 999px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none !important;
+    box-sizing: border-box;
+}
 </style>
 
 <h2 class="page-title">Orders for your products</h2>
