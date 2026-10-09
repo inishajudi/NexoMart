@@ -12,6 +12,7 @@ import com.nexomart.app.exception.BusinessRuleException;
 import com.nexomart.app.model.CartItem;
 import com.nexomart.app.model.Order;
 import com.nexomart.app.model.OrderItem;
+import com.nexomart.app.dto.SellerDashboardDTO;
 
 public class OrderService {
 
@@ -101,4 +102,10 @@ public void markShipped(long orderId) {
 public void markDelivered(long orderId) {
     orderDao.updateStatus(orderId, Order.Status.DELIVERED);
 }
+        /**
+     * Returns the sales dashboard summary for the given seller.
+     */
+    public SellerDashboardDTO getSellerDashboard(long sellerId) {
+        return orderDao.getSellerDashboard(sellerId);
+    }
 }
