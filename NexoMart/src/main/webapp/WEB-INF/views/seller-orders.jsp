@@ -37,13 +37,23 @@
             <div class="order-meta">Buyer ID: <c:out value="${order.buyerId}"/></div>
             <div style="display:flex; align-items:center; gap:12px;">
     Status: <span class="status-badge"><c:out value="${order.status}"/></span>
-    <c:if test="${order.status == 'CONFIRMED'}">
-        <form method="post" action="${pageContext.request.contextPath}/orders/seller"
-              style="margin:0;">
-            <input type="hidden" name="orderId" value="${order.id}"/>
-            <button type="submit" class="btn-ship">Mark as Shipped</button>
-        </form>
-    </c:if>
+   
+<c:if test="${order.status == 'CONFIRMED'}">
+    <form method="post" action="${pageContext.request.contextPath}/orders/seller"
+          style="margin:0;">
+        <input type="hidden" name="orderId" value="${order.id}"/>
+        <input type="hidden" name="action" value="ship"/>
+        <button type="submit" class="btn-ship">Mark as Shipped</button>
+    </form>
+</c:if>
+<c:if test="${order.status == 'SHIPPED'}">
+    <form method="post" action="${pageContext.request.contextPath}/orders/seller"
+          style="margin:0;">
+        <input type="hidden" name="orderId" value="${order.id}"/>
+        <input type="hidden" name="action" value="deliver"/>
+        <button type="submit" class="btn-ship" style="background:#1565c0;">Mark as Delivered</button>
+    </form>
+</c:if>
 </div>
             <div class="table-wrap">
             <table class="sand-table">
