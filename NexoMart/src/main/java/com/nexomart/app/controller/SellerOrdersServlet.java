@@ -40,8 +40,16 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response)
         response.sendError(HttpServletResponse.SC_FORBIDDEN);
         return;
     }
+
     long orderId = Long.parseLong(request.getParameter("orderId"));
-    orderService.markShipped(orderId);
+    String action = request.getParameter("action");
+
+    if ("ship".equals(action)) {
+        orderService.markShipped(orderId);
+    } else if ("deliver".equals(action)) {
+        orderService.markDelivered(orderId);
+    }
+
     response.sendRedirect(request.getContextPath() + "/orders/seller");
 }
 }
