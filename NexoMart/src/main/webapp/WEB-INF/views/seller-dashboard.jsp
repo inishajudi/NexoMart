@@ -47,7 +47,7 @@ a.btn-back:active {
           font-size:16px;
           font-weight:600;
           text-decoration:none !important;">
-   View Sales Dashboard
+    View Sales Dashboard
 </a>
 
 <div class="stat-row">
