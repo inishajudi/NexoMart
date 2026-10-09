@@ -1,49 +1,53 @@
 package com.nexomart.app.dto;
 
-/** Simple envelope for JSON responses (cart AJAX actions, etc.). */
+/**
+ * Standard JSON response envelope for all API endpoints.
+ * Success shape:  { "success": true,  "data": { ... }, "error": null }
+ * Error shape:    { "success": false, "data": null,    "error": { "code": "...", "message": "..." } }
+ */
 public class ApiResponse {
+
     private boolean success;
-    private String message;
     private Object data;
+    private ErrorDetail error;
 
-    public ApiResponse() {
-    }
+    public ApiResponse() {}
 
-    public ApiResponse(boolean success, String message, Object data) {
+    private ApiResponse(boolean success, Object data, ErrorDetail error) {
         this.success = success;
-        this.message = message;
-        this.data = data;
+        this.data    = data;
+        this.error   = error;
     }
 
-    public static ApiResponse ok(String message, Object data) {
-        return new ApiResponse(true, message, data);
+    /** Factory for successful responses. */
+    public static ApiResponse ok(Object data) {
+        return new ApiResponse(true, data, null);
     }
 
-    public static ApiResponse error(String message) {
-        return new ApiResponse(false, message, null);
+    /** Factory for error responses. */
+    public static ApiResponse error(String code, String message) {
+        return new ApiResponse(false, null, new ErrorDetail(code, message));
     }
 
-    public boolean isSuccess() {
-        return success;
-    }
+    public boolean isSuccess()    { return success; }
+    public Object getData()       { return data; }
+    public ErrorDetail getError() { return error; }
 
-    public void setSuccess(boolean success) {
-        this.success = success;
-    }
+    public void setSuccess(boolean success) { this.success = success; }
+    public void setData(Object data)        { this.data = data; }
+    public void setError(ErrorDetail error) { this.error = error; }
 
-    public String getMessage() {
-        return message;
-    }
+    /** Nested error detail object. */
+    public static class ErrorDetail {
+        private String code;
+        private String message;
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
+        public ErrorDetail(String code, String message) {
+            this.code    = code;
+            this.message = message;
+        }
 
-    public Object getData() {
-        return data;
-    }
-
-    public void setData(Object data) {
-        this.data = data;
+        public String getCode()    { return code; }
+        public String getMessage() { return message; }
     }
 }
