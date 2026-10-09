@@ -98,4 +98,7 @@ public class OrderService {
 public void markShipped(long orderId) {
     orderDao.updateStatus(orderId, Order.Status.SHIPPED);
 }
+public void markDelivered(long orderId) {
+    orderDao.updateStatus(orderId, Order.Status.DELIVERED);
+}
 }
