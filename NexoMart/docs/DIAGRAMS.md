@@ -68,3 +68,57 @@ erDiagram
         VARCHAR comment
         TIMESTAMP created_at
     }
+## D2 — Use Case Diagram
+
+```mermaid
+flowchart TB
+    Buyer([Buyer])
+    Seller([Seller])
+    Admin([Admin])
+
+    subgraph System["E-Commerce System"]
+        F1["F1: Register / Login"]
+        F2["F2: Browse Products"]
+        F3["F3: Search Products"]
+        F4["F4: Place Order"]
+        F5["F5: Manage Products"]
+        F6["F6: Manage Orders"]
+        F7["F7: Manage Users"]
+        F8["F8: View Reports"]
+    end
+
+    Buyer --> F1
+    Buyer --> F2
+    Buyer --> F3
+    Buyer --> F4
+
+    Seller --> F1
+    Seller --> F5
+    Seller --> F6
+
+    Admin --> F1
+    Admin --> F7
+    Admin --> F8
+```
+## D3 — Sequence Diagram (Place Order Flow)
+
+```mermaid
+sequenceDiagram
+    actor Buyer
+    participant Browser
+    participant Servlet
+    participant Service
+    participant DAO
+    participant DB as Database
+
+    Buyer->>Browser: Click Place Order
+    Browser->>Servlet: Submit order request
+    Servlet->>Service: Process order
+    Service->>DAO: Save order
+    DAO->>DB: Insert order
+    DB-->>DAO: Return result
+    DAO-->>Service: Return order details
+    Service-->>Servlet: Return order status
+    Servlet-->>Browser: Send response
+    Browser-->>Buyer: Display order confirmation
+```
