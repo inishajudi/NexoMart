@@ -22,7 +22,12 @@
 </style>
 
 <h2 class="page-title">Orders for your products</h2>
-
+<a href="${pageContext.request.contextPath}/seller/dashboard"
+   style="display:inline-block; margin-bottom:20px; padding:8px 20px;
+          background:#1a1a1a; color:#fff; border-radius:999px;
+          font-size:13px; text-decoration:none;">
+   View Sales Dashboard
+</a>
 <c:choose>
 <c:when test="${empty orders}">
     <div class="sand-card"><p class="empty-note">No orders yet for your products.</p></div>
