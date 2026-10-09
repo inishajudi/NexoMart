@@ -14,8 +14,23 @@
     .sand-table td { padding: 12px; border-bottom: 1px solid #eee; color: #1a1a1a; }
     .sand-table tr:last-child td { border-bottom: 0; }
     .empty-note  { color: #555; }
-    .btn-back    { display: inline-block; margin-bottom: 16px; padding: 8px 20px; background: #1a1a1a; color: #fff; border-radius: 999px; font-size: 13px; text-decoration: none; }
-    .btn-back:hover { background: #333; }
+    .btn-back {
+    display: inline-block;
+    margin-bottom: 16px;
+    padding: 12px 24px;
+    background: #1a1a1a;
+    color: #ffffff !important;
+    border: 1px solid #1a1a1a;
+    border-radius: 999px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.btn-back:hover {
+    background: #333333;
+    color: #ffffff !important;
+}
 </style>
 
 <h2 class="page-title">Sales Dashboard</h2>
