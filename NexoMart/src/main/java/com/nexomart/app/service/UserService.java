@@ -11,14 +11,29 @@ import com.nexomart.app.model.User;
 import com.nexomart.app.util.PasswordUtil;
 import com.nexomart.app.util.ValidationUtil;
 
+/**
+ * Business logic for user registration and authentication.
+ */
 public class UserService {
 
     private final UserDao userDao;
 
+    /**
+     * Constructs a UserService with the given UserDao.
+     *
+     * @param userDao the DAO used for user persistence
+     */
     public UserService(UserDao userDao) {
         this.userDao = userDao;
     }
 
+    /**
+     * Registers a new user account after validating input and checking for duplicate email.
+     *
+     * @param request the registration details (name, email, password, role)
+     * @return the newly created User
+     * @throws ValidationException if input is invalid or the email is already registered
+     */
     public User register(RegisterRequest request) throws ValidationException {
         ValidationUtil.requireNonBlank(request.getName(), "Name");
         ValidationUtil.requireValidEmail(request.getEmail());
@@ -45,6 +60,14 @@ public class UserService {
         return userDao.insert(user);
     }
 
+    /**
+     * Authenticates a user by verifying their email and bcrypt-hashed password.
+     *
+     * @param email    the user's email address
+     * @param password the plain-text password to verify
+     * @return the authenticated User
+     * @throws AuthenticationException if credentials are missing or do not match
+     */
     public User authenticate(String email, String password) throws AuthenticationException {
         if (email == null || password == null) {
             throw new AuthenticationException("Email and password are required.");
@@ -58,6 +81,11 @@ public class UserService {
         return user;
     }
 
+    /**
+     * Returns all registered users. Intended for admin use only.
+     *
+     * @return list of all users
+     */
     public List<User> findAll() {
         return userDao.findAll();
     }
